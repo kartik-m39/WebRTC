@@ -4,7 +4,7 @@ export default function useSocket() {
     const [socket, setsocket] = useState<WebSocket | null>(null);
     
         useEffect(() => {
-            const ws = new WebSocket("ws://localhost:8080");
+            const ws = new WebSocket("https://webrtc-1-0dm6.onrender.com/");
             setsocket(ws);
         }, []);
 
