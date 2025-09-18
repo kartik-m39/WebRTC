@@ -26,6 +26,19 @@ export default function Receiver(){
                 { urls: "stun:stun4.l.google.com:5349" }
             ]
         });
+
+        // Add connection state debugging
+        pc.oniceconnectionstatechange = () => {
+            console.log('ICE Connection State:', pc.iceConnectionState);
+        };
+        
+        pc.onconnectionstatechange = () => {
+            console.log('Connection State:', pc.connectionState);
+        };
+        
+        pc.onicegatheringstatechange = () => {
+            console.log('ICE Gathering State:', pc.iceGatheringState);
+        };
         
         // Set up ontrack BEFORE setting remote description
         // Here we get the tracks automatically, whenever they add track to their pc object

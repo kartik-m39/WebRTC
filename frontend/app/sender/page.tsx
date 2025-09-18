@@ -30,6 +30,19 @@ export default function Sender(){
         });
         if(!socket) return;
 
+        // Add connection state debugging
+        pc.oniceconnectionstatechange = () => {
+            console.log('ICE Connection State:', pc.iceConnectionState);
+        };
+        
+        pc.onconnectionstatechange = () => {
+            console.log('Connection State:', pc.connectionState);
+        };
+        
+        pc.onicegatheringstatechange = () => {
+            console.log('ICE Gathering State:', pc.iceGatheringState);
+        };
+
         // Whenever both the parties need to re-exchange their offers and answers, onnegotiationneeded helps here, it recreates the offer and send it 
         pc.onnegotiationneeded = async() => {
             const offer = await pc.createOffer();
