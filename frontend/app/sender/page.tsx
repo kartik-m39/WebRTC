@@ -17,7 +17,16 @@ export default function Sender(){
     }, [socket]);
 
     async function handleConnection(){
-        const pc = new RTCPeerConnection();
+        const pc = new RTCPeerConnection({
+            iceServers: [
+                { urls: 'stun:stun.l.google.com:19302' },
+                { urls: 'stun:stun1.l.google.com:19302' },
+                { urls: 'stun:stun2.l.google.com:19302' },
+                {urls: "stun.arbuz.ru:3478"},
+                {urls: "stun.avigora.com:3478"},
+                {urls: "stun.avigora.fr:3478"}
+            ]
+        });
         if(!socket) return;
 
         // Whenever both the parties need to re-exchange their offers and answers, onnegotiationneeded helps here, it recreates the offer and send it 

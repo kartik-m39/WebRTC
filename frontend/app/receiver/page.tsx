@@ -15,7 +15,16 @@ export default function Receiver(){
             socket.send(JSON.stringify({ type: "receiver"}))
         }
 
-        const pc = new RTCPeerConnection();
+        const pc = new RTCPeerConnection({
+             iceServers: [
+                { urls: 'stun:stun.l.google.com:19302' },
+                { urls: 'stun:stun1.l.google.com:19302' },
+                { urls: 'stun:stun2.l.google.com:19302' },
+                {urls: "stun.arbuz.ru:3478"},
+                {urls: "stun.avigora.com:3478"},
+                {urls: "stun.avigora.fr:3478"}
+            ]
+        });
         
         // Set up ontrack BEFORE setting remote description
         // Here we get the tracks automatically, whenever they add track to their pc object
